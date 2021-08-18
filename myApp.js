@@ -15,6 +15,11 @@ app.get('/now', function(req, res, next) {
   res.send({time: req.time});
 })
 
+app.route('/:word/echo')
+  .get((req, res) => {
+    res.send({echo: req.params.word})
+  })
+
 app.route('/')
   .get(function(req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
