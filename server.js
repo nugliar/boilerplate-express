@@ -24,9 +24,14 @@ if (!process.env.DISABLE_XORIGIN) {
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.route('/')
-    .get(function(req, res) {
-		  res.sendFile(process.cwd() + '/views/index.html');
-    })
+  .get(function(req, res) {
+    res.sendFile(process.cwd() + '/views/index.html');
+  })
+
+app.route('/json')
+  .get((req, res) => {
+    res.json({message: "Hello json"})
+  })
 
 var port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, function(){
