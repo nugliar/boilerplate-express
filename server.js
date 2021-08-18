@@ -30,7 +30,9 @@ app.route('/')
 
 app.route('/json')
   .get((req, res) => {
-    res.json({message: "Hello json"})
+    res.json({message: process.env.MESSAGE_TYPE === uppercase ?
+      "HELLO JSON" :
+      "Hello json"})
   })
 
 var port = process.env.PORT || 3000;
