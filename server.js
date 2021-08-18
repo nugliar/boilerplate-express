@@ -41,11 +41,11 @@ app.route('/json')
   })
 
 app.route('/now')
-  .get((req, res, next) => {
-    req.time = new Date().toString()
-    next()
-  }, (req, res) => {
-    res.send({time: req.time})
+  .get(function(req, res, next) {
+    req.time = new Date().toString();
+    next();
+  }, function(req, res) {
+    res.send({time: req.time});
   })
 
 var port = process.env.PORT || 3000;
