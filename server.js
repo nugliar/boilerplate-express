@@ -40,6 +40,13 @@ app.route('/json')
       "Hello json"})
   })
 
+app.get('/now', (req, res, next) => {
+  req.time = new Date().toString()
+  next()
+}, (req, res) => {
+  res.send({time: req.time})
+})
+
 var port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, function(){
   bGround.log('Node is listening on port '+ port + '...')
