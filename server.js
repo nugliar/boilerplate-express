@@ -21,32 +21,6 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
-app.use('/public', express.static(process.cwd() + '/public'));
-// 
-// app.use((req, res, next) => {
-//   console.log(`${req.method} ${req.path} - ${req.ip}`);
-//   next();
-// })
-
-app.get('/now', function(req, res, next) {
-  req.time = new Date().toString();
-  next();
-}, function(req, res) {
-  res.send({time: req.time});
-})
-
-app.route('/')
-  .get(function(req, res) {
-    res.sendFile(process.cwd() + '/views/index.html');
-  })
-
-app.route('/json')
-  .get((req, res) => {
-    res.json({message: process.env.MESSAGE_STYLE === 'uppercase' ?
-      "HELLO JSON" :
-      "Hello json"})
-  })
-
 var port = process.env.PORT || 3000;
 bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, function(){
   bGround.log('Node is listening on port '+ port + '...')
