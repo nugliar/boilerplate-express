@@ -28,6 +28,13 @@ app.use((req, res, next) => {
   next();
 })
 
+app.get('/now', function(req, res, next) {
+  req.time = new Date().toString();
+  next();
+}, function(req, res) {
+  res.send({time: req.time});
+})
+
 app.route('/')
   .get(function(req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
@@ -38,14 +45,6 @@ app.route('/json')
     res.json({message: process.env.MESSAGE_STYLE === 'uppercase' ?
       "HELLO JSON" :
       "Hello json"})
-  })
-
-app.route('/now')
-  .get(function(req, res, next) {
-    req.time = new Date().toString();
-    next();
-  }, function(req, res) {
-    res.send({time: req.time});
   })
 
 var port = process.env.PORT || 3000;
