@@ -30,7 +30,7 @@ app.route('/')
 
 app.route('/json')
   .get((req, res) => {
-    res.json({message: process.env.MESSAGE_TYPE === uppercase ?
+    res.json({message: process.env.MESSAGE_TYPE === 'uppercase' ?
       "HELLO JSON" :
       "Hello json"})
   })
