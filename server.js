@@ -23,6 +23,11 @@ if (!process.env.DISABLE_XORIGIN) {
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path} - ${req.ip}`);
+  next();
+})
+
 app.route('/')
   .get(function(req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
