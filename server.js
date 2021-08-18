@@ -21,12 +21,12 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
-app.use('/public', express.static(process.cwd() + '/public'));
-
-app.route('/')
-    .get(function(req, res) {
-		  res.sendFile(process.cwd() + '/views/index.html');
-    })
+// app.use('/public', express.static(process.cwd() + '/public'));
+//
+// app.route('/')
+//     .get(function(req, res) {
+// 		  res.sendFile(process.cwd() + '/views/index.html');
+//     })
 
 app.get('/', (req, res) => {
   res.send('Hello Express')
