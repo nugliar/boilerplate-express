@@ -23,14 +23,15 @@ app.route('/:word/echo')
     res.send({echo: req.params.word})
   })
 
-const parseName = (req, res) => {
-  const name = req.query
-  res.send({name: name.first + ' ' + name.last})
-}
-
 app.route('/name')
-  .get(parseName)
-  .post(parseName)
+  .get((req, res) => {
+    const name = req.query
+    res.send({name: name.first + ' ' + name.last})
+  })
+  .post((req, res) => {
+    const name = req.body
+    res.send({name: name.first + ' ' + name.last})
+  })
 
 app.route('/')
   .get(function(req, res) {
