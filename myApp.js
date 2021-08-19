@@ -1,4 +1,5 @@
 var express = require('express');
+let bodyParser = require('body-parser')
 var app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
@@ -7,6 +8,8 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
 })
+
+app.use(bodyParser.urlencoded({extended: false}))
 
 app.get('/now', function(req, res, next) {
   req.time = new Date().toString();
