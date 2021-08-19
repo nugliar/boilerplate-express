@@ -20,6 +20,15 @@ app.route('/:word/echo')
     res.send({echo: req.params.word})
   })
 
+const parseName = (req, res) => {
+  const name = req.query
+  res.send({name: name.first + ' ' + name.last})
+}
+
+app.route('/name')
+  .get(parseName)
+  .post(parseName)
+
 app.route('/')
   .get(function(req, res) {
     res.sendFile(process.cwd() + '/views/index.html');
